@@ -3,11 +3,6 @@ using LibraryManagement.Library.Repositories;
 using LibraryManagement.Library.Services;
 using LibraryManagement.Library.TextParsers;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryManagement.Library.Extensions
 {

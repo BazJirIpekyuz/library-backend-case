@@ -10,9 +10,9 @@ namespace LibraryManagement.Library.Services
     public interface IBookInventoryService
     {
         void RegisterBook(string isbn, int room, int row, int bookShelf);
-        List<Book> GetBookInventoryListByRoomId(int roomId);
-        List<Book> GetBookInventoryListByRowId(int rowId);
-        List<Book> GetBookInventoryListByBookShelfId(int bookShelfId);
-        List<Room> RegisterLibraryLocations(List<Room> rooms);
+        IReadOnlyCollection<Book> GetBookInventoryListByRoomId(int roomId);
+        IReadOnlyCollection<Book> GetBookInventoryListByRowId(int rowId);
+        IReadOnlyCollection<Book> GetBookInventoryListByBookShelfId(int bookShelfId);
+        void RegisterLibraryLocations(List<Room> rooms);
     }
 }

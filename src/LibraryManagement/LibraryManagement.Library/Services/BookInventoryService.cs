@@ -17,22 +17,22 @@ namespace LibraryManagement.Library.Services
             bookInventoryRepository.RegisterBook(isbn, room, row, bookShelf);
         }
 
-        public List<Room> RegisterLibraryLocations(List<Room> rooms)
+        public void RegisterLibraryLocations(List<Room> rooms)
         {
-            return bookInventoryRepository.RegisterLibraryLocations(rooms);
+            bookInventoryRepository.RegisterLibraryLocations(rooms);
         }
 
-        public List<Book> GetBookInventoryListByRoomId(int roomId)
+        public IReadOnlyCollection<Book> GetBookInventoryListByRoomId(int roomId)
         {
             return bookInventoryRepository.GetBookInventoryListByRoomId(roomId);
         }
 
-        public List<Book> GetBookInventoryListByRowId(int rowId)
+        public IReadOnlyCollection<Book> GetBookInventoryListByRowId(int rowId)
         {
             return bookInventoryRepository.GetBookInventoryListByRowId(rowId);
         }
 
-        public List<Book> GetBookInventoryListByBookShelfId(int bookShelfId)
+        public IReadOnlyCollection<Book> GetBookInventoryListByBookShelfId(int bookShelfId)
         {
             return bookInventoryRepository.GetBookInventoryListByBookShelfId(bookShelfId);
         }

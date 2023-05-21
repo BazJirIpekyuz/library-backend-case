@@ -14,11 +14,11 @@ namespace LibraryManagement.Library.Repositories
         /// </summary>
         /// <param name="books">books to add.</param>
         /// <returns>book list.</returns>
-        public List<Book> AddBooks(List<Book> books)
+        public IReadOnlyCollection<Book> AddBooks(List<Book> books)
         {
             this.books.AddRange(books);
 
-            return this.books;
+            return this.books.AsReadOnly();
         }
 
         /// <summary>
@@ -26,9 +26,9 @@ namespace LibraryManagement.Library.Repositories
         /// </summary>
         /// <param name="bookSearchSpecification">book search expression.</param>
         /// <returns>books that satisfy book search expression.</returns>
-        public List<Book> FindBooks(Expression<Func<Book, bool>> bookSearchExpression)
+        public IReadOnlyCollection<Book> FindBooks(Expression<Func<Book, bool>> bookSearchExpression)
         {
-            var result = books.Where(bookSearchExpression.Compile()).ToList();
+            var result = books.Where(bookSearchExpression.Compile()).ToList().AsReadOnly();
 
             return result;
         }
@@ -38,7 +38,7 @@ namespace LibraryManagement.Library.Repositories
         /// </summary>
         /// <param name="isbn">ISBN number.</param>
         /// <returns>book object of the given ISBN number.</returns>
-        public Book? FindBookByISBN(string isbn)
+        public Book? FindBook(string isbn)
         {
             return books?.Find(q => q.ISBN == isbn);
         }
@@ -48,9 +48,9 @@ namespace LibraryManagement.Library.Repositories
         /// </summary>
         /// <param name="isbn">ISBN number.</param>
         /// <returns>book location.</returns>
-        public LibraryItemLocation? FindBookLocationByISBN(string isbn)
+        public LibraryItemLocation? FindBookLocation(string isbn)
         {
-            return FindBookByISBN(isbn)?.Location;
+            return FindBook(isbn)?.Location;
         }
     }
 }

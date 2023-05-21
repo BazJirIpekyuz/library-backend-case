@@ -21,7 +21,7 @@ namespace LibraryManagement.Library.Services
         /// </summary>
         /// <param name="input">book input data.</param>
         /// <returns>book list.</returns>
-        public List<Book> ReadBooks(string input)
+        public IReadOnlyCollection<Book> ReadBooks(string input)
         {
             var bookList = bookInputTextParser.Parse(input);
 
@@ -33,7 +33,7 @@ namespace LibraryManagement.Library.Services
         /// </summary>
         /// <param name="searchString">search string.</param>
         /// <returns>books that satisfies search keywords.</returns>
-        public List<Book> FindBooks(string searchString)
+        public IReadOnlyCollection<Book> FindBooks(string searchString)
         {
             var keywords = SearchStringParser.Parse(searchString);
             return bookRepository.FindBooks(BookSearchPredicateBuilder.Build(keywords));
@@ -44,9 +44,9 @@ namespace LibraryManagement.Library.Services
         /// </summary>
         /// <param name="isbn">ISBN number.</param>
         /// <returns>book location.</returns>
-        public LibraryItemLocation? FindBookLocationByISBN(string isbn)
+        public LibraryItemLocation? FindBookLocation(string isbn)
         {
-            return bookRepository.FindBookLocationByISBN(isbn);
+            return bookRepository.FindBookLocation(isbn);
         }
     }
 }

@@ -5,9 +5,9 @@ namespace LibraryManagement.Library.Repositories
 {
     public interface IBookRepository
     {
-        public List<Book> AddBooks(List<Book> books);
-        List<Book> FindBooks(Expression<Func<Book, bool>> bookSearchExpression);
-        Book? FindBookByISBN(string isbn);
-        LibraryItemLocation? FindBookLocationByISBN(string isbn);
+        IReadOnlyCollection<Book> AddBooks(List<Book> books);
+        IReadOnlyCollection<Book> FindBooks(Expression<Func<Book, bool>> bookSearchExpression);
+        Book? FindBook(string isbn);
+        LibraryItemLocation? FindBookLocation(string isbn);
     }
 }

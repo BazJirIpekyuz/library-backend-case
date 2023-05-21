@@ -7,23 +7,23 @@ namespace LibraryManagement.Library.Tests.Services
     [Collection(TestConstants.LibraryCollectionDefinition)]
     public class BookInventoryServiceShould
     {
-        private readonly IBookInventoryService bookInventoryService;
-        private readonly LibraryFixture libraryFixture;
+        private readonly IBookInventoryService _bookInventoryService;
+        private readonly LibraryFixture _libraryFixture;
 
         public BookInventoryServiceShould(LibraryFixture libraryFixture)
         {
-            bookInventoryService = libraryFixture.ServiceProvider.GetRequiredService<IBookInventoryService>();
-            this.libraryFixture = libraryFixture;
+            _bookInventoryService = libraryFixture.ServiceProvider.GetRequiredService<IBookInventoryService>();
+            _libraryFixture = libraryFixture;
         }
 
         [Fact]
-        public void GetInventoryListByRoomId()
+        public void Given_RoomId_When_RoomHasAnyInventory_Then_Return_InventoryList()
         {
             // Arrange
-            int roomId = libraryFixture.RoomsWithRegisteredBooks.First();
+            int roomId = _libraryFixture.RoomsWithRegisteredBooks.First();
 
             // Act
-            var inventoryList = bookInventoryService.GetBookInventoryListByRoomId(roomId);
+            var inventoryList = _bookInventoryService.GetBookInventoryListByRoomId(roomId);
 
             // Assert
             Assert.NotEmpty(inventoryList);
@@ -31,13 +31,13 @@ namespace LibraryManagement.Library.Tests.Services
         }
 
         [Fact]
-        public void GetInventoryListByRowId()
+        public void Given_RowId_When_RowHasAnyInventory_Then_Return_InventoryList()
         {
             // Arrange
-            int rowId = libraryFixture.RowsWithRegisteredBooks.Last();
+            int rowId = _libraryFixture.RowsWithRegisteredBooks.Last();
 
             // Act
-            var inventoryList = bookInventoryService.GetBookInventoryListByRowId(rowId);
+            var inventoryList = _bookInventoryService.GetBookInventoryListByRowId(rowId);
 
             // Assert
             Assert.NotEmpty(inventoryList);
@@ -45,13 +45,13 @@ namespace LibraryManagement.Library.Tests.Services
         }
 
         [Fact]
-        public void GetBookInventoryListByBookShelfId()
+        public void Given_BookShelfId_When_BookShelfHasAnyInventory_Then_Return_InventoryList()
         {
             // Arrange
-            int bookShelfId = libraryFixture.BookShelvesWithRegisteredBooks.First();
+            int bookShelfId = _libraryFixture.BookShelvesWithRegisteredBooks.First();
 
             // Act
-            var inventoryList = bookInventoryService.GetBookInventoryListByBookShelfId(bookShelfId);
+            var inventoryList = _bookInventoryService.GetBookInventoryListByBookShelfId(bookShelfId);
 
             // Assert
             Assert.NotEmpty(inventoryList);

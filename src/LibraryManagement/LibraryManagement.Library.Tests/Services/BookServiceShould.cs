@@ -9,27 +9,27 @@ namespace LibraryManagement.Library.Tests.Services
     [Collection(TestConstants.LibraryCollectionDefinition)]
     public class BookServiceShould
     {
-        private readonly LibraryFixture libraryFixture;
-        private readonly IBookService bookService;
+        private readonly LibraryFixture _libraryFixture;
+        private readonly IBookService _bookService;
 
         public BookServiceShould(LibraryFixture libraryFixture, ITestOutputHelper outputHelper)
         {
-            this.libraryFixture = libraryFixture;
+            _libraryFixture = libraryFixture;
 
-            bookService = libraryFixture.ServiceProvider.GetRequiredService<IBookService>();
+            _bookService = libraryFixture.ServiceProvider.GetRequiredService<IBookService>();
             outputHelper.WriteLine("Getting a Book Service instance succeeded.");
         }
 
         [Fact]
-        public void FindBooksBySearchString()
+        public void Given_SearchString_When_BookHasMatched_Then_Return_BookList()
         {
             // Arrange.
             string authorsNameSearchKeyword = "Jensen";
-            IEnumerable<Book> booksExpected = libraryFixture.Books.Where(q => q.Authors.Any(q => q.Contains(authorsNameSearchKeyword))).OrderBy(q => q.ISBN);
+            IEnumerable<Book> booksExpected = _libraryFixture.Books.Where(q => q.Authors.Any(q => q.Contains(authorsNameSearchKeyword))).OrderBy(q => q.ISBN);
             string searchString = $"*{authorsNameSearchKeyword}*";
 
             // Act
-            var booksResult = bookService.FindBooks(searchString).OrderBy(q => q.ISBN).ToList();
+            var booksResult = _bookService.FindBooks(searchString).OrderBy(q => q.ISBN).ToList();
 
             // Assert
             int i = 0;
@@ -40,13 +40,13 @@ namespace LibraryManagement.Library.Tests.Services
         }
 
         [Fact]
-        public void FindBookLocationByISBN()
+        public void Given_ISBN_When_BookHasLocation_Then_Return_BookLocation()
         {
             // Arrange
-            string isbn = libraryFixture.BookISBNsWithRegisteredLocation.First();
+            string isbn = _libraryFixture.BookISBNsWithRegisteredLocation.First();
 
             // Act
-            var bookLocation = bookService.FindBookLocationByISBN(isbn);
+            var bookLocation = _bookService.FindBookLocation(isbn);
 
             // Assert
             Assert.NotNull(bookLocation);
