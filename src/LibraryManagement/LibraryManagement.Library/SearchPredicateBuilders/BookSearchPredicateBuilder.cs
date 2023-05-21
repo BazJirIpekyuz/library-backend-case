@@ -1,5 +1,4 @@
 ﻿using LibraryManagement.Library.Models;
-using LibraryManagement.Library.TextParsers;
 using System.Linq.Expressions;
 
 namespace LibraryManagement.Library.Helpers
@@ -7,18 +6,15 @@ namespace LibraryManagement.Library.Helpers
     /// <summary>
     /// A builder to build predicate from a search string for searching books.
     /// </summary>
-    internal static class BookSearchPredicateBuilder
+    internal class BookSearchPredicateBuilder
     {
-
         /// <summary>
         /// Build book search predicate.
         /// </summary>
-        /// <param name="searchString">search string.</param>
+        /// <param name="keywords">search keywords.</param>
         /// <returns></returns>
-        internal static Expression<Func<Book, bool>> Build(string searchString)
+        internal static Expression<Func<Book, bool>> Build(List<string> keywords)
         {
-            var keywords = SearchStringParser.Parse(searchString);
-
             var searchExpression = PredicateBuilder.True<Book>();
 
             foreach (string keyword in keywords)

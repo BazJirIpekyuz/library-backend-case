@@ -4,5 +4,6 @@
     {
         public string Title { get; set; }
         public string ISBN { get; set; }
+        public LibraryItemLocation? Location { get; set; }
     }
 }
