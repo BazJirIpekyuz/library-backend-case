@@ -33,7 +33,7 @@ namespace LibraryManagement.Library.Tests.Helpers
 
                 // Add books.
                 string booksTestDataInput = File.ReadAllText("BooksTestData.txt");
-                List<Book> books = bookService.ReadBooks(booksTestDataInput);
+                IReadOnlyCollection<Book> books = bookService.ReadBooks(booksTestDataInput);
                 Books.AddRange(books);
 
                 // Add books locations.

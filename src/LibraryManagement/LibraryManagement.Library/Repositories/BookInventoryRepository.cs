@@ -25,7 +25,7 @@ namespace LibraryManagement.Library.Repositories
         /// <exception cref="ArgumentException"></exception>
         public void RegisterBook(string isbn, int room, int row, int bookShelf)
         {
-            var book = bookRepository.FindBookByISBN(isbn);
+            var book = bookRepository.FindBook(isbn);
 
             if (book == null)
             {
@@ -47,9 +47,9 @@ namespace LibraryManagement.Library.Repositories
         /// </summary>
         /// <param name="roomId">room id.</param>
         /// <returns>book list.</returns>
-        public List<Book> GetBookInventoryListByRoomId(int roomId)
+        public IReadOnlyCollection<Book> GetBookInventoryListByRoomId(int roomId)
         {
-            return libraryRoomsLookup[roomId].Books;
+            return libraryRoomsLookup[roomId].Books.AsReadOnly();
         }
 
         /// <summary>
@@ -57,9 +57,9 @@ namespace LibraryManagement.Library.Repositories
         /// </summary>
         /// <param name="rowId">row id in a room.</param>
         /// <returns>book list.</returns>
-        public List<Book> GetBookInventoryListByRowId(int rowId)
+        public IReadOnlyCollection<Book> GetBookInventoryListByRowId(int rowId)
         {
-            return libraryRowsLookup[rowId].Books;
+            return libraryRowsLookup[rowId].Books.AsReadOnly();
         }
 
         /// <summary>
@@ -67,25 +67,22 @@ namespace LibraryManagement.Library.Repositories
         /// </summary>
         /// <param name="bookShelfId">book-shelf id.</param>
         /// <returns>book list.</returns>
-        public List<Book> GetBookInventoryListByBookShelfId(int bookShelfId)
+        public IReadOnlyCollection<Book> GetBookInventoryListByBookShelfId(int bookShelfId)
         {
-            return libraryBookShelvesLookup[bookShelfId].Books;
+            return libraryBookShelvesLookup[bookShelfId].Books.AsReadOnly();
         }
 
         /// <summary>
         /// Register library rooms, room's rows and rows's book-shelves.
         /// </summary>
-        /// <param name="rooms"></param>
-        /// <returns></returns>
-        public List<Room> RegisterLibraryLocations(List<Room> rooms)
+        /// <param name="rooms">rooms.</param>
+        public void RegisterLibraryLocations(List<Room> rooms)
         {
             foreach (var room in rooms)
             {
                 libraryRoomsLookup.Add(room.Id, room);
                 AddLibraryRoomRows(room.Rows);
             }
-
-            return rooms;
         }
 
         private void AddLibraryRoomRows(List<Row> rows)
