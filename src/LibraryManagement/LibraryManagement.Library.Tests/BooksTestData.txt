@@ -1,0 +1,48 @@
+﻿Book:
+Author: Brian Jensen
+Title: Texts from Denmark
+Publisher: Gyldendal
+Published: 2001
+NumberOfPages: 253
+ISBN: 978-3-16-148410-0
+
+Book:
+Author: Peter Jensen
+Author: Hans Andersen
+Title: Stories from abroad
+Publisher: Borgen
+Published: 2012
+NumberOfPages: 156
+ISBN: 978-3-16-148410-1
+
+Book:
+Author: Harper Lee
+Title: To kill a Mockingbird
+Publisher: YKY
+Published: 1960
+NumberOfPages: 250
+ISBN: 978-3-16-148410-2
+
+Book:
+Author: George Orwell
+Title: Animal farm
+Publisher: YKY
+Published: 1945
+NumberOfPages: 250
+ISBN: 978-3-16-148410-3
+
+Book:
+Author: George Orwell
+Title: 1984
+Publisher: Penguin Books
+Published: 1949
+NumberOfPages: 250
+ISBN: 978-3-16-148410-4
+
+Book:
+Author: Leo Tolstoy
+Title: Anna Karenina
+Publisher: Penguin Books
+Published: 1877
+NumberOfPages: 350
+ISBN: 978-3-16-148410-5

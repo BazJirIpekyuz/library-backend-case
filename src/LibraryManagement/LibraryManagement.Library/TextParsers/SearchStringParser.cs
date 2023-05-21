@@ -3,7 +3,7 @@
     /// <summary>
     /// Search string parser.
     /// </summary>
-    internal static class SearchStringParser
+    public static class SearchStringParser
     {
 
         /// <summary>
@@ -13,7 +13,7 @@
         /// </summary>
         /// <param name="searchString"></param>
         /// <returns></returns>
-        internal static List<string> Parse(string searchString)
+        public static List<string> Parse(string searchString)
         {
             List<string> searchKeywords = new List<string>();
 

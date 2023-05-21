@@ -4,16 +4,15 @@ namespace LibraryManagement.Library.TextParsers
 {
     /// <summary>
     /// Book input text parser.
-    /// 
     /// </summary>
-    internal static class BookInputTextParser
+    public class BookInputTextParser : IInputTextParser<Book>
     {
         /// <summary>
         /// Parse book input text and create a list of book instance.
         /// </summary>
         /// <param name="input">book data.</param>
         /// <returns></returns>
-        public static List<Book> Parse(string input)
+        public List<Book> Parse(string input)
         {
             List<Book> books = new List<Book>();
 
@@ -28,11 +27,11 @@ namespace LibraryManagement.Library.TextParsers
         }
 
         /// <summary>
-        /// TODOs: Give exception if parsing bookPropertyValue is failed.
+        /// Parse book data ande create a book instance from it.
         /// </summary>
-        /// <param name="bookInputData"></param>
-        /// <returns></returns>
-        private static Book ParseBookData(string bookInputData)
+        /// <param name="bookInputData">book input data.</param>
+        /// <returns>a book instance.</returns>
+        private Book ParseBookData(string bookInputData)
         {
             Book book = new Book();
             string[] bookPropertyNameAndValueInputArr = bookInputData.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
@@ -65,6 +64,9 @@ namespace LibraryManagement.Library.TextParsers
 
                         case "NumberOfPages":
                             book.NumberOfPages = int.Parse(bookPropertyValue);
+                            break;
+                        case "ISBN":
+                            book.ISBN = bookPropertyValue;
                             break;
 
                         default:

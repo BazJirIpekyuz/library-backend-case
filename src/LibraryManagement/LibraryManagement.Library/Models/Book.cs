@@ -6,5 +6,6 @@
         public string Publisher { get; set; }
         public int PublicationYear { get; set; }
         public int NumberOfPages { get; set; }
+
     }
 }
