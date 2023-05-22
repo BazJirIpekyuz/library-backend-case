@@ -1,4 +1,5 @@
-﻿using LibraryManagement.Library.Models;
+﻿using LibraryManagement.Library.Entities;
+using LibraryManagement.Library.Models;
 using System.Linq.Expressions;
 
 namespace LibraryManagement.Library.Repositories

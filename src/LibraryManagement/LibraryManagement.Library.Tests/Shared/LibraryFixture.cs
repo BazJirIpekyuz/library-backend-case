@@ -1,4 +1,5 @@
-﻿using LibraryManagement.Library.Extensions;
+﻿using LibraryManagement.Library.Entities;
+using LibraryManagement.Library.Extensions;
 using LibraryManagement.Library.Models;
 using LibraryManagement.Library.Services;
 using LibraryManagement.Library.Tests.Shared;
@@ -9,7 +10,7 @@ namespace LibraryManagement.Library.Tests.Helpers
     public class LibraryFixture : IDisposable
     {
         public ServiceProvider ServiceProvider { get; private set; }
-        public List<Book> Books { get; private set; } = new List<Book>();
+        public List<BookDto> Books { get; private set; } = new List<BookDto>();
         public List<string> BookISBNsWithRegisteredLocation { get; private set; } = new List<string>();
         public List<int> RoomsWithRegisteredBooks = new List<int>();
         public List<int> RowsWithRegisteredBooks = new List<int>();
@@ -33,7 +34,7 @@ namespace LibraryManagement.Library.Tests.Helpers
 
                 // Add books.
                 string booksTestDataInput = File.ReadAllText("BooksTestData.txt");
-                IReadOnlyCollection<Book> books = bookService.ReadBooks(booksTestDataInput);
+                IReadOnlyCollection<BookDto> books = bookService.ReadBooks(booksTestDataInput);
                 Books.AddRange(books);
 
                 // Add books locations.

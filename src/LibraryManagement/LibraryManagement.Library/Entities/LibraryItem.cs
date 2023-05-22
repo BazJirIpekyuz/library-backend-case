@@ -1,4 +1,6 @@
-﻿namespace LibraryManagement.Library.Models
+﻿using LibraryManagement.Library.Models;
+
+namespace LibraryManagement.Library.Entities
 {
     public abstract class LibraryItem
     {

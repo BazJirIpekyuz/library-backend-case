@@ -1,4 +1,5 @@
-﻿using LibraryManagement.Library.Models;
+﻿using LibraryManagement.Library.Entities;
+using LibraryManagement.Library.Models;
 using LibraryManagement.Library.Services;
 using LibraryManagement.Library.Tests.Helpers;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,7 +26,7 @@ namespace LibraryManagement.Library.Tests.Services
         {
             // Arrange.
             string authorsNameSearchKeyword = "Jensen";
-            IEnumerable<Book> booksExpected = _libraryFixture.Books.Where(q => q.Authors.Any(q => q.Contains(authorsNameSearchKeyword))).OrderBy(q => q.ISBN);
+            IEnumerable<BookDto> booksExpected = _libraryFixture.Books.Where(q => q.Authors.Any(q => q.Contains(authorsNameSearchKeyword))).OrderBy(q => q.ISBN);
             string searchString = $"*{authorsNameSearchKeyword}*";
 
             // Act

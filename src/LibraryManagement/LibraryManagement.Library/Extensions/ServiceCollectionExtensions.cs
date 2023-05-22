@@ -1,4 +1,4 @@
-﻿using LibraryManagement.Library.Models;
+﻿using LibraryManagement.Library.Entities;
 using LibraryManagement.Library.Repositories;
 using LibraryManagement.Library.Services;
 using LibraryManagement.Library.TextParsers;
@@ -15,6 +15,7 @@ namespace LibraryManagement.Library.Extensions
             serviceCollection.AddSingleton<IBookRepository, BookRepository>();
             serviceCollection.AddSingleton<IBookInventoryRepository, BookInventoryRepository>();
             serviceCollection.AddSingleton<IInputTextParser<Book>, BookInputTextParser>();
+            serviceCollection.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             return serviceCollection;
         }

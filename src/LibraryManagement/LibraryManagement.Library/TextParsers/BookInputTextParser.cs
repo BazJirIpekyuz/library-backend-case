@@ -1,4 +1,4 @@
-﻿using LibraryManagement.Library.Models;
+﻿using LibraryManagement.Library.Entities;
 
 namespace LibraryManagement.Library.TextParsers
 {
