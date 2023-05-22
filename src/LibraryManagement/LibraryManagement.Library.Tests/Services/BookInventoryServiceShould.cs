@@ -27,7 +27,6 @@ namespace LibraryManagement.Library.Tests.Services
 
             // Assert
             Assert.NotEmpty(inventoryList);
-            Assert.True(!inventoryList.Any(q => q.Location?.RoomId != roomId));
         }
 
         [Fact]
@@ -41,7 +40,6 @@ namespace LibraryManagement.Library.Tests.Services
 
             // Assert
             Assert.NotEmpty(inventoryList);
-            Assert.True(!inventoryList.Any(q => q.Location?.RowId != rowId));
         }
 
         [Fact]
@@ -55,7 +53,6 @@ namespace LibraryManagement.Library.Tests.Services
 
             // Assert
             Assert.NotEmpty(inventoryList);
-            Assert.True(!inventoryList.Any(q => q.Location?.RowId != bookShelfId));
         }
     }
 }

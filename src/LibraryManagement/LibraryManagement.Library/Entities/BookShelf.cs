@@ -1,4 +1,4 @@
-﻿namespace LibraryManagement.Library.Models
+﻿namespace LibraryManagement.Library.Entities
 {
     public class BookShelf
     {

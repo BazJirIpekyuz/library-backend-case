@@ -1,18 +1,14 @@
-﻿using LibraryManagement.Library.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LibraryManagement.Library.Entities;
+using LibraryManagement.Library.Models;
 
 namespace LibraryManagement.Library.Services
 {
     public interface IBookInventoryService
     {
         void RegisterBook(string isbn, int room, int row, int bookShelf);
-        IReadOnlyCollection<Book> GetBookInventoryListByRoomId(int roomId);
-        IReadOnlyCollection<Book> GetBookInventoryListByRowId(int rowId);
-        IReadOnlyCollection<Book> GetBookInventoryListByBookShelfId(int bookShelfId);
+        IReadOnlyCollection<BookDto> GetBookInventoryListByRoomId(int roomId);
+        IReadOnlyCollection<BookDto> GetBookInventoryListByRowId(int rowId);
+        IReadOnlyCollection<BookDto> GetBookInventoryListByBookShelfId(int bookShelfId);
         void RegisterLibraryLocations(List<Room> rooms);
     }
 }

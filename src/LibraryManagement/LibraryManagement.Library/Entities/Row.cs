@@ -1,4 +1,4 @@
-﻿namespace LibraryManagement.Library.Models
+﻿namespace LibraryManagement.Library.Entities
 {
     public class Row
     {
@@ -7,6 +7,6 @@
         public int RoomId { get; set; }
         public List<BookShelf> BookShelves { get; set; }
 
-        internal List<Book> Books => BookShelves.SelectMany(x => x.Books).ToList();
+        public List<Book> Books => BookShelves.SelectMany(x => x.Books).ToList();
     }
 }

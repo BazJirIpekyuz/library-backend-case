@@ -1,4 +1,6 @@
-﻿using LibraryManagement.Library.Helpers;
+﻿using AutoMapper;
+using LibraryManagement.Library.Entities;
+using LibraryManagement.Library.Helpers;
 using LibraryManagement.Library.Models;
 using LibraryManagement.Library.Repositories;
 using LibraryManagement.Library.TextParsers;
@@ -9,11 +11,13 @@ namespace LibraryManagement.Library.Services
     {
         private readonly IBookRepository bookRepository;
         private readonly IInputTextParser<Book> bookInputTextParser;
+        private readonly IMapper mapper;
 
-        public BookService(IBookRepository bookRepository, IInputTextParser<Book> bookInputTextParser)
+        public BookService(IBookRepository bookRepository, IInputTextParser<Book> bookInputTextParser, IMapper mapper)
         {
             this.bookRepository = bookRepository;
             this.bookInputTextParser = bookInputTextParser;
+            this.mapper = mapper;
         }
 
         /// <summary>
@@ -21,11 +25,11 @@ namespace LibraryManagement.Library.Services
         /// </summary>
         /// <param name="input">book input data.</param>
         /// <returns>book list.</returns>
-        public IReadOnlyCollection<Book> ReadBooks(string input)
+        public IReadOnlyCollection<BookDto> ReadBooks(string input)
         {
             var bookList = bookInputTextParser.Parse(input);
 
-            return bookRepository.AddBooks(bookList);
+            return mapper.Map<IReadOnlyCollection<BookDto>>(bookRepository.AddBooks(bookList));
         }
 
         /// <summary>
@@ -33,10 +37,12 @@ namespace LibraryManagement.Library.Services
         /// </summary>
         /// <param name="searchString">search string.</param>
         /// <returns>books that satisfies search keywords.</returns>
-        public IReadOnlyCollection<Book> FindBooks(string searchString)
+        public IReadOnlyCollection<BookDto> FindBooks(string searchString)
         {
             var keywords = SearchStringParser.Parse(searchString);
-            return bookRepository.FindBooks(BookSearchPredicateBuilder.Build(keywords));
+            var foundBooks = bookRepository.FindBooks(BookSearchPredicateBuilder.Build(keywords));
+
+            return mapper.Map<IReadOnlyCollection<BookDto>>(foundBooks);
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿using LibraryManagement.Library.Models;
+﻿using LibraryManagement.Library.Entities;
 using System.Linq.Expressions;
 
 namespace LibraryManagement.Library.Helpers

@@ -1,4 +1,6 @@
-﻿using LibraryManagement.Library.Models;
+﻿using AutoMapper;
+using LibraryManagement.Library.Entities;
+using LibraryManagement.Library.Models;
 using LibraryManagement.Library.Repositories;
 
 namespace LibraryManagement.Library.Services
@@ -6,10 +8,12 @@ namespace LibraryManagement.Library.Services
     public class BookInventoryService : IBookInventoryService
     {
         private readonly IBookInventoryRepository bookInventoryRepository;
+        private readonly IMapper mapper;
 
-        public BookInventoryService(IBookInventoryRepository bookInventoryRepository)
+        public BookInventoryService(IBookInventoryRepository bookInventoryRepository, IMapper mapper)
         {
             this.bookInventoryRepository = bookInventoryRepository;
+            this.mapper = mapper;
         }
 
         public void RegisterBook(string isbn, int room, int row, int bookShelf)
@@ -22,19 +26,25 @@ namespace LibraryManagement.Library.Services
             bookInventoryRepository.RegisterLibraryLocations(rooms);
         }
 
-        public IReadOnlyCollection<Book> GetBookInventoryListByRoomId(int roomId)
+        public IReadOnlyCollection<BookDto> GetBookInventoryListByRoomId(int roomId)
         {
-            return bookInventoryRepository.GetBookInventoryListByRoomId(roomId);
+            var roomBookInventory = bookInventoryRepository.GetBookInventoryListByRoomId(roomId);
+
+            return mapper.Map<IReadOnlyCollection<BookDto>>(roomBookInventory);
         }
 
-        public IReadOnlyCollection<Book> GetBookInventoryListByRowId(int rowId)
+        public IReadOnlyCollection<BookDto> GetBookInventoryListByRowId(int rowId)
         {
-            return bookInventoryRepository.GetBookInventoryListByRowId(rowId);
+            var rowBookInventory = bookInventoryRepository.GetBookInventoryListByRowId(rowId);
+
+            return mapper.Map<IReadOnlyCollection<BookDto>>(rowBookInventory);
         }
 
-        public IReadOnlyCollection<Book> GetBookInventoryListByBookShelfId(int bookShelfId)
+        public IReadOnlyCollection<BookDto> GetBookInventoryListByBookShelfId(int bookShelfId)
         {
-            return bookInventoryRepository.GetBookInventoryListByBookShelfId(bookShelfId);
+            var bookShelfBookInventory = bookInventoryRepository.GetBookInventoryListByBookShelfId(bookShelfId);
+
+            return mapper.Map<IReadOnlyCollection<BookDto>>(bookShelfBookInventory);
         }
     }
 }
