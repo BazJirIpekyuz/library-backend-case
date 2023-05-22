@@ -6,6 +6,6 @@
         public string RoomNumber { get; set; }
         public List<Row> Rows { get; set; }
 
-        public List<Book> Books => Rows.SelectMany(x => x.Books).ToList();
+        internal List<Book> Books => Rows.SelectMany(x => x.Books).ToList();
     }
 }

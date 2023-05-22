@@ -7,6 +7,6 @@
         public int RoomId { get; set; }
         public List<BookShelf> BookShelves { get; set; }
 
-        public List<Book> Books => BookShelves.SelectMany(x => x.Books).ToList();
+        internal List<Book> Books => BookShelves.SelectMany(x => x.Books).ToList();
     }
 }
